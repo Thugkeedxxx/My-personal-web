@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>THUGKEED TECH</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:#020617;
+color:white;
+text-align:center;
+overflow-x:hidden;
+}
+
+/* INTRO */
+
+#intro{
+position:fixed;
+width:100%;
+height:100%;
+background:black;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+z-index:9999;
+}
+
+.intro-logo{
+font-size:60px;
+color:#00c3ff;
+text-shadow:0 0 20px #00c3ff;
+}
+
+#bootText{
+font-family:monospace;
+color:#00ff9d;
+margin-top:20px;
+}
+
+.loader{
+margin-top:20px;
+width:120px;
+height:4px;
+background:#111;
+}
+
+.loader::after{
+content:"";
+display:block;
+height:100%;
+width:0;
+background:#00c3ff;
+animation:load 3s forwards;
+}
+
+@keyframes load{
+0%{width:0}
+100%{width:100%}
+}
+
+/* GALAXY */
+
+#galaxy{
+position:fixed;
+width:100%;
+height:100%;
+background:radial-gradient(circle,#001933,#000);
+z-index:-1;
+}
+
+.star{
+position:absolute;
+width:2px;
+height:2px;
+background:white;
+animation:twinkle 3s infinite;
+}
+
+@keyframes twinkle{
+0%{opacity:0}
+50%{opacity:1}
+100%{opacity:0}
+}
+
+/* HEADER */
+
+.logo{
+font-size:60px;
+color:#00c3ff;
+text-shadow:0 0 20px #00c3ff;
+margin-top:40px;
+}
+
+.tag{
+color:#8adfff;
+margin-bottom:20px;
+}
+
+/* PROFILE */
+
+.profile img{
+width:130px;
+height:130px;
+border-radius:50%;
+border:3px solid #00c3ff;
+box-shadow:0 0 20px #00c3ff;
+}
+
+/* DESCRIPTION */
+
+.desc{
+max-width:600px;
+margin:auto;
+padding:20px;
+color:#cceeff;
+}
+
+/* LINKS */
+
+.links a{
+display:block;
+margin:10px auto;
+width:230px;
+padding:12px;
+border:1px solid #00c3ff;
+border-radius:10px;
+text-decoration:none;
+color:white;
+transition:0.3s;
+}
+
+.links a:hover{
+background:#00c3ff;
+box-shadow:0 0 20px #00c3ff;
+}
+
+/* CUBE */
+
+.cube-area{
+margin-top:60px;
+perspective:1000px;
+}
+
+.cube{
+width:150px;
+height:150px;
+margin:auto;
+position:relative;
+transform-style:preserve-3d;
+animation:spin 10s infinite linear;
+}
+
+.cube div{
+position:absolute;
+width:150px;
+height:150px;
+border:2px solid #00c3ff;
+background:rgba(0,195,255,0.2);
+}
+
+.front{transform:translateZ(75px)}
+.back{transform:rotateY(180deg) translateZ(75px)}
+.left{transform:rotateY(-90deg) translateZ(75px)}
+.right{transform:rotateY(90deg) translateZ(75px)}
+.top{transform:rotateX(90deg) translateZ(75px)}
+.bottom{transform:rotateX(-90deg) translateZ(75px)}
+
+@keyframes spin{
+0%{transform:rotateX(0) rotateY(0)}
+100%{transform:rotateX(360deg) rotateY(360deg)}
+}
+
+/* TERMINAL */
+
+.terminal{
+background:black;
+width:80%;
+max-width:600px;
+margin:60px auto;
+padding:20px;
+border:1px solid #00c3ff;
+box-shadow:0 0 20px #00c3ff;
+font-family:monospace;
+text-align:left;
+}
+
+.green{
+color:#00ff9d;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="intro">
+<h1 class="intro-logo">THUGKEED TECH</h1>
+<p id="bootText"></p>
+<div class="loader"></div>
+</div>
+
+<div id="galaxy"></div>
+
+<header>
+
+<h1 class="logo">THUGKEED</h1>
+
+<p class="tag">Building The Future</p>
+
+</header>
+
+<section class="profile">
+
+<img src="https://files.catbox.moe/6zuh3h.png">
+
+</section>
+
+<div class="desc">
+
+<p>
+
+I am <b>THUGKEED</b>, a developer focused on building futuristic technology, AI systems, bots, music platforms and developer tools.
+
+Founder of <b>THUGKEED TECH</b>.
+
+</p>
+
+</div>
+
+<div class="links">
+
+<a href="#">GitHub</a>
+<a href="#">WhatsApp</a>
+<a href="#">Facebook</a>
+<a href="#">Instagram</a>
+
+<a href="ai.html">THUGKEED AI</a>
+<a href="music.html">Stream My Music</a>
+<a href="downloads.html">Download My Songs</a>
+
+</div>
+
+<div class="cube-area">
+
+<div class="cube">
+<div class="front"></div>
+<div class="back"></div>
+<div class="left"></div>
+<div class="right"></div>
+<div class="top"></div>
+<div class="bottom"></div>
+</div>
+
+</div>
+
+<div class="terminal" id="terminal"></div>
+
+<script>
+
+/* GALAXY */
+
+for(let i=0;i<120;i++){
+
+let star=document.createElement("div")
+
+star.className="star"
+
+star.style.top=Math.random()*100+"%"
+
+star.style.left=Math.random()*100+"%"
+
+document.getElementById("galaxy").appendChild(star)
+
+}
+
+/* BOOT */
+
+const boot=[
+
+"Booting THUGKEED SYSTEM...",
+"Loading AI modules...",
+"Connecting to network...",
+"Access granted..."
+
+]
+
+let b=0
+
+function bootSeq(){
+
+if(b<boot.length){
+
+document.getElementById("bootText").innerHTML=boot[b]
+
+b++
+
+setTimeout(bootSeq,800)
+
+}else{
+
+setTimeout(()=>{
+
+document.getElementById("intro").style.display="none"
+
+},1000)
+
+}
+
+}
+
+bootSeq()
+
+/* TERMINAL */
+
+const lines=[
+
+"> Initializing system...",
+"> Loading developer tools...",
+"> Connecting to network...",
+"> System ready."
+
+]
+
+let t=0
+
+function terminalType(){
+
+if(t<lines.length){
+
+document.getElementById("terminal").innerHTML+="<p class='green'>"+lines[t]+"</p>"
+
+t++
+
+setTimeout(terminalType,800)
+
+}
+
+}
+
+terminalType()
+
+</script>
+
+</body>
+</html>
